@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 Direcciones Radicalmente Distintas de Diseño</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #06080C;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 30px 16px 80px;
+    }
+
+    .container {
+      max-width: 1680px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1E2536;
+    }
+    .page-title h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .page-title h1 span {
+      background: linear-gradient(135deg, #CCFF00, #38BDF8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-title p {
+      color: #94A3B8;
+      font-size: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1400px) {
+      .examples-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .col-wrapper {
+      background: #0B0E14;
+      border: 1px solid #1C2230;
+      border-radius: 24px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-header {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1A2130;
+    }
+    .col-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .badge-ex1 { background: rgba(56, 189, 248, 0.15); color: #38BDF8; }
+    .badge-ex2 { background: rgba(204, 255, 0, 0.15); color: #CCFF00; }
+    .badge-ex3 { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
+    .badge-ex4 { background: rgba(239, 68, 68, 0.15); color: #EF4444; }
+
+    .col-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .col-desc {
+      font-size: 0.8rem;
+      color: #94A3B8;
+      line-height: 1.35;
+      min-height: 48px;
+    }
+
+    /* PHONE FRAME (390 x 780 PROPORTION) */
+    .phone-mock {
+      width: 100%;
+      height: 740px;
+      border-radius: 36px;
+      border: 6px solid #1C2333;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+    }
+
+    /* =========================================================
+       1. EJEMPLO 1: PANTALLA COMPLETA / REELS / NTC
+       ========================================================= */
+    .theme-fullscreen {
+      background: #000000;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .fs-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .fs-grad-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+    }
+    .fs-grad-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 280px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+    }
+    .fs-content-top {
+      position: relative;
+      z-index: 3;
+      padding: 16px;
+    }
+    /* Stories progress bar */
+    .fs-stories-bars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .fs-bar {
+      height: 3px;
+      flex: 1;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+    }
+    .fs-bar.done { background: #FFFFFF; }
+    .fs-bar.active { background: #CCFF00; box-shadow: 0 0 8px #CCFF00; }
+
+    .fs-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .fs-routine-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .fs-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.4);
+      color: #FFFFFF;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .fs-content-bottom {
+      position: relative;
+      z-index: 3;
+      padding: 20px 18px 24px;
+    }
+    .fs-focus-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(204, 255, 0, 0.2);
+      color: #CCFF00;
+      border: 1px solid rgba(204, 255, 0, 0.4);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .fs-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 2.1rem;
+      line-height: 1.05;
+      letter-spacing: 0.8px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+    .fs-cue {
+      font-size: 0.85rem;
+      color: #CBD5E1;
+      line-height: 1.35;
+      margin-bottom: 18px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .fs-timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 12px 18px;
+      margin-bottom: 12px;
+    }
+    .fs-timer-digits {
+      font-family: 'Anton', sans-serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+    .fs-timer-sub {
+      font-size: 0.7rem;
+      color: #94A3B8;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .fs-play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #CCFF00;
+      color: #000000;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.4);
+    }
+    .fs-swipe-hint {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #94A3B8;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* =========================================================
+       2. EJEMPLO 2: MODO CADDY / CAMPO DE PRÁCTICAS
+       ========================================================= */
+    .theme-caddy {
+      background: #000000;
+      color: #FFFFFF;
+      width: 100%;
+      height: 100%;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .caddy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #1E222D;
+      padding-bottom: 12px;
+    }
+    .caddy-brand {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: #CCFF00;
+    }
+    .caddy-badge-mode {
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .caddy-center {
+      text-align: center;
+      margin: auto 0;
+    }
+    .caddy-drill-counter {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 6px;
+    }
+    .caddy-drill-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .caddy-thumb-box {
+      width: 100%;
+      height: 170px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid #1E2433;
+      margin-bottom: 16px;
+    }
+    .caddy-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Reloj gigante de 2 metros */
+    .caddy-huge-timer {
+      background: #0E121B;
+      border: 3px solid #CCFF00;
+      border-radius: 20px;
+      padding: 16px 10px;
+      box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+    }
+    .caddy-huge-digits {
+      font-family: 'Anton', sans-serif;
+      font-size: 4.8rem;
+      line-height: 0.95;
+      color: #CCFF00;
+      letter-spacing: 2px;
+    }
+    .caddy-timer-info {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .caddy-bottom-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .caddy-btn-pause {
+      background: #1E2330;
+      color: #FFFFFF;
+      border: 2px solid #334155;
+      border-radius: 16px;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      padding: 18px 10px;
+      cursor: pointer;
+    }
+    .caddy-btn-next {
+      background: #CCFF00;
+      color: #07090E;
+      border: none;
+      border-radius: 16px;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 1px;
+      padding: 18px 10px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(204, 255, 0, 0.3);
+    }
+
+    /* =========================================================
+       3. EJEMPLO 3: CUADERNO DEPORTIVO / EDITORIAL CLÁSICO
+       ========================================================= */
+    .theme-journal {
+      background: #FAF8F5;
+      color: #1A1A1A;
+      width: 100%;
+      height: 100%;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Playfair Display', serif;
+    }
+    .jn-masthead {
+      border-bottom: 2px solid #0F382A;
+      padding-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .jn-masthead-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #0F382A;
+      letter-spacing: -0.5px;
+    }
+    .jn-masthead-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #78716C;
+      font-weight: 700;
+    }
+
+    .jn-lead-box {
+      margin: 16px 0;
+    }
+    .jn-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #854D0E;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .jn-title {
+      font-size: 1.65rem;
+      line-height: 1.15;
+      font-weight: 800;
+      color: #0F382A;
+      margin-bottom: 12px;
+    }
+    .jn-frame {
+      border: 1px solid #D6D3D1;
+      padding: 8px;
+      background: #FFFFFF;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    .jn-frame img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+    .jn-caption {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      color: #78716C;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .jn-protocol-box {
+      font-family: 'Inter', sans-serif;
+      border-top: 1px solid #E7E5E4;
+      padding-top: 12px;
+      margin-bottom: 16px;
+    }
+    .jn-protocol-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #0F382A;
+      margin-bottom: 8px;
+    }
+    .jn-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 6px 0;
+      border-bottom: 1px dashed #E7E5E4;
+      color: #44403C;
+    }
+    .jn-num {
+      font-weight: 800;
+      color: #854D0E;
+      margin-right: 6px;
+    }
+
+    .jn-btn-start {
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      background: #0F382A;
+      color: #FAF8F5;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* =========================================================
+       4. EJEMPLO 4: BENTO HUD COCKPIT (TU MAQUETA ORIGINAL)
+       ========================================================= */
+    .theme-bento-hud {
+      background: #07090E;
+      color: #FFFFFF;
+      width: 100%;
+      height: 100%;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .bh-top-row {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 10px;
+    }
+    .bh-profile {
+      background: #0E131F;
+      border: 1px solid #1D263B;
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bh-volt-box {
+      width: 44px;
+      height: 44px;
+      background: #CCFF00;
+      border-radius: 10px;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bh-volt-box img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .bh-prof-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+    .bh-prof-sub {
+      font-size: 0.65rem;
+      color: #94A3B8;
+      font-weight: 700;
+    }
+    .bh-radar-box {
+      background: #0E131F;
+      border: 1px solid #1D263B;
+      border-radius: 16px;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bh-radar-val {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.45rem;
+      color: #CCFF00;
+      line-height: 1;
+    }
+    .bh-radar-lbl {
+      font-size: 0.62rem;
+      color: #94A3B8;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Consola Central con Reloj Circular */
+    .bh-console {
+      background: #0E131F;
+      border: 1px solid #24304A;
+      border-radius: 20px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    .bh-console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .bh-console-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+    }
+    .bh-badge-today {
+      background: rgba(204, 255, 0, 0.15);
+      color: #CCFF00;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .bh-split-body {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .bh-console-img {
+      width: 100%;
+      height: 130px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .bh-dial-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 6px solid #1D263B;
+      border-top-color: #CCFF00;
+      border-right-color: #CCFF00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.15);
+    }
+    .bh-dial-digits {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.6rem;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+    .bh-dial-lbl {
+      font-size: 0.55rem;
+      color: #94A3B8;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .bh-start-btn {
+      width: 100%;
+      background: #CCFF00;
+      color: #07090E;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
+      padding: 10px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    /* Módulos de pie */
+    .bh-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .bh-stopwatch-crimson {
+      background: #EF4444;
+      border-radius: 16px;
+      padding: 12px 10px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .bh-stopwatch-crimson h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    .bh-stopwatch-crimson span {
+      font-size: 0.68rem;
+      opacity: 0.9;
+    }
+    .bh-speed-graph {
+      background: #0E131F;
+      border: 1px solid #1D263B;
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+    .bh-speed-graph h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.15rem;
+      color: #38BDF8;
+    }
+    .bh-speed-graph span {
+      font-size: 0.65rem;
+      color: #94A3B8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>4 DIRECCIONES <span>RADICALMENTE DISTINTAS</span></h1>
+      <p>Una comparativa visual directa con 4 filosofías de diseño, arquitecturas y experiencias de uso sin plantillas genéricas.</p>
+    </div>
+
+    <div class="examples-grid">
+
+      <!-- ==============================================
+           COLUMNA 1: PANTALLA COMPLETA / REELS
+           ============================================== -->
+      <div class="col-wrapper" id="box-ex1">
+        <div class="col-header">
+          <span class="col-badge badge-ex1">DIRECCIÓN 1</span>
+          <h2 class="col-title">Pantalla Completa / Swipe</h2>
+          <p class="col-desc">Cero cajitas ni marcos. La ilustración de Nicole ocupa el 100% de la pantalla de borde a borde, con controles flotantes translúcidos y swipe vertical.</p>
+        </div>
+
+        <div class="phone-mock">
+          <div class="theme-fullscreen">
+            <img src="assets/nicole_v2_overspeed.jpg" alt="Nicole Overspeed" class="fs-media">
+            <div class="fs-grad-top"></div>
+            <div class="fs-grad-bottom"></div>
+
+            <div class="fs-content-top">
+              <div class="fs-stories-bars">
+                <div class="fs-bar done"></div>
+                <div class="fs-bar active"></div>
+                <div class="fs-bar"></div>
+                <div class="fs-bar"></div>
+                <div class="fs-bar"></div>
+              </div>
+              <div class="fs-top-meta">
+                <span class="fs-routine-tag"><i class="fa-solid fa-bolt"></i> SWING SPEED • 2/5</span>
+                <button class="fs-close-btn"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+            </div>
+
+            <div class="fs-content-bottom">
+              <span class="fs-focus-pill"><i class="fa-solid fa-crosshairs"></i> Aceleración de Palo & Lag</span>
+              <h3 class="fs-title">Overspeed Stick</h3>
+              <p class="fs-cue">Sonido de látigo máximo en el impacto reteniendo el retraso de muñecas.</p>
+
+              <div class="fs-timer-row">
+                <div>
+                  <div class="fs-timer-digits">00:35</div>
+                  <div class="fs-timer-sub">Serie 2 de 3 • Descanso 15s</div>
+                </div>
+                <button class="fs-play-btn"><i class="fa-solid fa-pause"></i></button>
+              </div>
+
+              <div class="fs-swipe-hint">
+                <i class="fa-solid fa-chevron-up"></i> Desliza hacia arriba para siguiente ejercicio
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           COLUMNA 2: MODO CADDY / CAMPO DE PRÁCTICAS
+           ============================================== -->
+      <div class="col-wrapper" id="box-ex2">
+        <div class="col-header">
+          <span class="col-badge badge-ex2">DIRECCIÓN 2</span>
+          <h2 class="col-title">Modo Caddy / Cancha</h2>
+          <p class="col-desc">Para dejar el móvil en la bolsa a 2 metros. Tipografía industrial de alto contraste, números gigantescos estilo marcador de estadio y botones enormes.</p>
+        </div>
+
+        <div class="phone-mock">
+          <div class="theme-caddy">
+            <div class="caddy-header">
+              <span class="caddy-brand">NICOLE CADDY</span>
+              <span class="caddy-badge-mode">EN VIVO • CANCHA</span>
+            </div>
+
+            <div class="caddy-center">
+              <div class="caddy-drill-counter">EJERCICIO 2 DE 6 • GOLF TPI</div>
+              <h2 class="caddy-drill-title">MOLINO T-SPINE</h2>
+
+              <div class="caddy-thumb-box">
+                <img src="assets/nicole_v2_windmill.jpg" alt="Molino">
+              </div>
+
+              <div class="caddy-huge-timer">
+                <div class="caddy-huge-digits">00:45</div>
+                <div class="caddy-timer-info">SERIE 1 DE 3 • 8 REPS / LADO</div>
+              </div>
+            </div>
+
+            <div class="caddy-bottom-actions">
+              <button class="caddy-btn-pause"><i class="fa-solid fa-pause"></i> PAUSA</button>
+              <button class="caddy-btn-next">SIGUIENTE <i class="fa-solid fa-forward-step"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           COLUMNA 3: CUADERNO DEPORTIVO / EDITORIAL
+           ============================================== -->
+      <div class="col-wrapper" id="box-ex3">
+        <div class="col-header">
+          <span class="col-badge badge-ex3">DIRECCIÓN 3</span>
+          <h2 class="col-title">Cuaderno Editorial</h2>
+          <p class="col-desc">Cero estética de videojuego. Fondo claro crema de papel, verde pino de club de golf, tipografía clásica elegante y la sesión como un itinerario de torneo.</p>
+        </div>
+
+        <div class="phone-mock">
+          <div class="theme-journal">
+            <div class="jn-masthead">
+              <span class="jn-masthead-logo">Nicole Golf</span>
+              <span class="jn-masthead-meta">CUADERNO TÉCNICO • 14A</span>
+            </div>
+
+            <div class="jn-lead-box">
+              <div class="jn-eyebrow">Sesión Oficial de Hoy</div>
+              <h2 class="jn-title">Disociación Pélvica & X-Factor</h2>
+
+              <div class="jn-frame">
+                <img src="assets/nicole_v2_pelvic.jpg" alt="Disociación">
+                <div class="jn-caption">Lámina Técnica — Control lumbopélvico y ángulo de columna en postura 5-iron.</div>
+              </div>
+
+              <div class="jn-protocol-box">
+                <div class="jn-protocol-label">Itinerario de Práctica</div>
+                <div class="jn-row">
+                  <span><span class="jn-num">01</span> Báscula Pélvica TPI</span>
+                  <span>5 min</span>
+                </div>
+                <div class="jn-row">
+                  <span><span class="jn-num">02</span> Molino Torácico con Palo</span>
+                  <span>8 min</span>
+                </div>
+                <div class="jn-row">
+                  <span><span class="jn-num">03</span> Giros Disociados X-Factor</span>
+                  <span>7 min</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="jn-btn-start">Comenzar Itinerario</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           COLUMNA 4: BENTO COCKPIT (MAQUETA ORIGINAL)
+           ============================================== -->
+      <div class="col-wrapper" id="box-ex4">
+        <div class="col-header">
+          <span class="col-badge badge-ex4">DIRECCIÓN 4</span>
+          <h2 class="col-title">Bento Cockpit (Original)</h2>
+          <p class="col-desc">La maqueta de referencia que aprobaste al inicio: consola táctil de simulador (Trackman) con avatar en caja Volt, reloj circular neón y cronómetro rojo.</p>
+        </div>
+
+        <div class="phone-mock">
+          <div class="theme-bento-hud">
+            <div class="bh-top-row">
+              <div class="bh-profile">
+                <div class="bh-volt-box">
+                  <img src="assets/nicole_real.jpg" alt="Avatar Nicole">
+                </div>
+                <div>
+                  <div class="bh-prof-name">NICOLE</div>
+                  <div class="bh-prof-sub">14 AÑOS • PRO TOUR</div>
+                </div>
+              </div>
+              <div class="bh-radar-box">
+                <div class="bh-radar-val">1.48</div>
+                <div class="bh-radar-lbl">Smash Factor</div>
+              </div>
+            </div>
+
+            <div class="bh-console">
+              <div class="bh-console-header">
+                <span class="bh-console-title">POWER DRIVE ROTATION</span>
+                <span class="bh-badge-today">HOY</span>
+              </div>
+              <div class="bh-split-body">
+                <img src="assets/nicole_v2_overspeed.jpg" alt="Power" class="bh-console-img">
+                <div class="bh-dial-circle">
+                  <span class="bh-dial-digits">25:00</span>
+                  <span class="bh-dial-lbl">Minutos</span>
+                </div>
+              </div>
+              <button class="bh-start-btn"><i class="fa-solid fa-play"></i> START SESSION</button>
+            </div>
+
+            <div class="bh-bottom-row">
+              <div class="bh-stopwatch-crimson">
+                <h4>STOPWATCH</h4>
+                <span>01:15 EN CURSO</span>
+              </div>
+              <div class="bh-speed-graph">
+                <h4>112 MPH</h4>
+                <span>Club Head Speed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
