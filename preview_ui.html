@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview UI - Nicole Pro Trainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #07090E;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1E293B;
+    }
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+    }
+    .header h1 span { color: #CCFF00; }
+    .header p { color: #94A3B8; font-size: 1rem; }
+    
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 1.5px;
+      margin: 32px 0 16px;
+      color: #CCFF00;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reference-box {
+      background: #0E131F;
+      border: 2px solid #CCFF00;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 30px rgba(204, 255, 0, 0.15);
+    }
+    .reference-box img {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #0E131F;
+      border: 1px solid #1D263B;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #CCFF00;
+    }
+    .card-header {
+      padding: 14px 18px;
+      background: #131927;
+      border-bottom: 1px solid #1D263B;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: #FFFFFF;
+    }
+    .badge {
+      background: #CCFF00;
+      color: #07090E;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 99px;
+    }
+    .card-img-wrap {
+      padding: 12px;
+      background: #07090E;
+      text-align: center;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid #1D263B;
+    }
+    .actions-bar {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .btn-live {
+      display: inline-block;
+      background: #CCFF00;
+      color: #07090E;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 1.5px;
+      padding: 12px 32px;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 4px 20px rgba(204, 255, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-live:hover {
+      background: #FFFFFF;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>NICOLE PRO <span>DISEÑO TOUR EDITION</span></h1>
+    <p>Comparativa visual entre la referencia aprobada de diseño y las vistas actuales de la app móvil</p>
+    <div class="actions-bar">
+      <a href="/index.html" class="btn-live">ABRIR APP EN VIVO</a>
+    </div>
+  </div>
+
+  <div class="section-title">
+    ★ REFERENCIA OFICIAL APROBADA (LOOK QUE ELEGISTE)
+  </div>
+  <div class="reference-box">
+    <img src="assets/reference_design_user.png" alt="Referencia aprobada Nicole Golf Pro">
+  </div>
+
+  <div class="section-title">
+    📱 CAPTURAS ACTUALES DE LA APP EN MÓVIL (390 x 844)
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">01. Dashboard Principal</span>
+        <span class="badge">VISTA HOY</span>
+      </div>
+      <div class="card-img-wrap">
+        <img src="assets/tour_screenshots/01_home.png" alt="Dashboard Principal">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">02. Biblioteca de Ejercicios</span>
+        <span class="badge">112 EJERCICIOS</span>
+      </div>
+      <div class="card-img-wrap">
+        <img src="assets/tour_screenshots/02_library.png" alt="Biblioteca de Ejercicios">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">03. Ficha Biomecánica Modal</span>
+        <span class="badge">DETALLE NICOLE</span>
+      </div>
+      <div class="card-img-wrap">
+        <img src="assets/tour_screenshots/03_modal.png" alt="Ficha Biomecánica Modal">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">04. Rutinas de Swing & Fitness</span>
+        <span class="badge">GUIADAS TPI</span>
+      </div>
+      <div class="card-img-wrap">
+        <img src="assets/tour_screenshots/04_routines.png" alt="Rutinas Guiadas">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">05. Cronómetro y Series</span>
+        <span class="badge">TIMER SCREEN</span>
+      </div>
+      <div class="card-img-wrap">
+        <img src="assets/tour_screenshots/05_timer.png" alt="Cronómetro y Series">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
